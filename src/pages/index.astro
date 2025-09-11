@@ -1,50 +1,110 @@
 ---
-import BaseHead from '../components/BaseHead.astro';
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
-import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+const paypalLink = "https://www.paypal.com/donate?hosted_button_id=YOUR_BUTTON_ID";
+const pixQRCode = "/pix-qr.png"; // Coloque sua imagem do QR code PIX na pasta public
 ---
 
-<!doctype html>
-<html lang="en">
-	<head>
-		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
-	</head>
-	<body>
-		<Header />
-		<main>
-			<h1>🧑‍🚀 Hello, Astronaut!</h1>
-			<p>
-				Welcome to the official <a href="https://astro.build/">Astro</a> blog starter template. This
-				template serves as a lightweight, minimally-styled starting point for anyone looking to build
-				a personal website, blog, or portfolio with Astro.
-			</p>
-			<p>
-				This template comes with a few integrations already configured in your
-				<code>astro.config.mjs</code> file. You can customize your setup with
-				<a href="https://astro.build/integrations">Astro Integrations</a> to add tools like Tailwind,
-				React, or Vue to your project.
-			</p>
-			<p>Here are a few ideas on how to get started with the template:</p>
-			<ul>
-				<li>Edit this page in <code>src/pages/index.astro</code></li>
-				<li>Edit the site header items in <code>src/components/Header.astro</code></li>
-				<li>Add your name to the footer in <code>src/components/Footer.astro</code></li>
-				<li>Check out the included blog posts in <code>src/content/blog/</code></li>
-				<li>Customize the blog post page layout in <code>src/layouts/BlogPost.astro</code></li>
-			</ul>
-			<p>
-				Have fun! If you get stuck, remember to <a href="https://docs.astro.build/"
-					>read the docs
-				</a> or <a href="https://astro.build/chat">join us on Discord</a> to ask questions.
-			</p>
-			<p>
-				Looking for a blog template with a bit more personality? Check out <a
-					href="https://github.com/Charca/astro-blog-template"
-					>astro-blog-template
-				</a> by <a href="https://twitter.com/Charca">Maxi Ferreira</a>.
-			</p>
-		</main>
-		<Footer />
-	</body>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Chá de Bebê</title>
+    <style>
+      body {
+        font-family: 'Comic Sans MS', sans-serif;
+        background: linear-gradient(to bottom, #ffe6f0, #fff0f5);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        min-height: 100vh;
+        margin: 0;
+        padding: 2rem;
+        color: #333;
+      }
+      header {
+        text-align: center;
+        margin-bottom: 2rem;
+      }
+      h1 { font-size: 3rem; margin-bottom: 0.5rem; color: #ff69b4; }
+      h2 { font-size: 2rem; margin-bottom: 1rem; color: #ff85c1; }
+      p { color: #555; }
+      section {
+        background: white;
+        padding: 2rem;
+        border-radius: 1.5rem;
+        box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+        margin: 1rem 0;
+        text-align: center;
+        width: 90%;
+        max-width: 400px;
+        position: relative;
+      }
+      img {
+        width: 180px;
+        height: 180px;
+        margin-bottom: 1rem;
+        border-radius: 1rem;
+        border: 4px solid #ffb6c1;
+        background: #fff0f5;
+      }
+      .button {
+        display: inline-block;
+        padding: 0.75rem 1.5rem;
+        background: #ff69b4;
+        color: white;
+        border-radius: 1rem;
+        text-decoration: none;
+        font-weight: bold;
+        font-size: 1.1rem;
+        transition: background 0.3s, transform 0.2s;
+      }
+      .button:hover { 
+        background: #ff85c1;
+        transform: scale(1.05);
+      }
+      footer {
+        margin-top: 2rem;
+        text-align: center;
+        font-size: 1rem;
+        color: #ff69b4;
+      }
+      .icon {
+        font-size: 2rem;
+        margin-bottom: 0.5rem;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>🎀 Bem-vindos ao Nosso Chá de Bebê! 🎀</h1>
+      <p>Ajude-nos a celebrar com amor contribuindo via PIX ou PayPal.</p>
+    </header>
+
+    <main>
+      <section>
+        <div class="icon">🍼</div>
+        <h2>Contribuir via PIX</h2>
+        <img src={pixQRCode} alt="QR Code PIX" />
+        <p>Escaneie o QR code acima para enviar sua contribuição via PIX.</p>
+      </section>
+
+      <section>
+        <div class="icon">🎁</div>
+        <h2>Contribuir via PayPal</h2>
+        <p>Clique no botão abaixo para contribuir usando o PayPal:</p>
+        <a class="button" href={paypalLink} target="_blank">Doar via PayPal</a>
+      </section>
+
+      <section>
+        <div class="icon">💌</div>
+        <h2>Mensagem de Carinho</h2>
+        <p>Deixe uma mensagem de carinho para o bebê e a família!</p>
+        <p>(Opcional: você pode criar um formulário simples depois)</p>
+      </section>
+    </main>
+
+    <footer>
+      Obrigado por celebrar conosco! 💖
+    </footer>
+  </body>
 </html>
