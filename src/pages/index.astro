@@ -20,10 +20,14 @@ const pixQRCode = "/pix-qr.png"; // Coloque sua imagem do QR code PIX na pasta p
         margin: 0;
         padding: 2rem;
         color: #333;
+        overflow-x: hidden;
       }
       header {
         text-align: center;
         margin-bottom: 2rem;
+        opacity: 0;
+        transform: translateY(-50px);
+        animation: headerFadeIn 1s forwards;
       }
       h1 { font-size: 3rem; margin-bottom: 0.5rem; color: #ff69b4; }
       h2 { font-size: 2rem; margin-bottom: 1rem; color: #ff85c1; }
@@ -38,6 +42,14 @@ const pixQRCode = "/pix-qr.png"; // Coloque sua imagem do QR code PIX na pasta p
         width: 90%;
         max-width: 400px;
         position: relative;
+        transition: transform 0.3s, box-shadow 0.3s, opacity 0.5s;
+        opacity: 0;
+        transform: translateY(50px);
+        animation: sectionFadeIn 1s forwards;
+      }
+      section:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0,0,0,0.15);
       }
       img {
         width: 180px;
@@ -57,6 +69,7 @@ const pixQRCode = "/pix-qr.png"; // Coloque sua imagem do QR code PIX na pasta p
         font-weight: bold;
         font-size: 1.1rem;
         transition: background 0.3s, transform 0.2s;
+        cursor: pointer;
       }
       .button:hover { 
         background: #ff85c1;
@@ -67,10 +80,71 @@ const pixQRCode = "/pix-qr.png"; // Coloque sua imagem do QR code PIX na pasta p
         text-align: center;
         font-size: 1rem;
         color: #ff69b4;
+        opacity: 0;
+        transform: translateY(50px);
+        animation: footerFadeIn 1s forwards;
       }
       .icon {
         font-size: 2rem;
         margin-bottom: 0.5rem;
+      }
+      form {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+        margin-top: 1rem;
+      }
+      input, textarea {
+        padding: 0.75rem;
+        border-radius: 0.75rem;
+        border: 1px solid #ccc;
+        font-size: 1rem;
+        width: 100%;
+      }
+      textarea { resize: vertical; }
+      #messages {
+        margin-top: 1rem;
+        text-align: left;
+        max-height: 200px;
+        overflow-y: auto;
+        padding-right: 0.5rem;
+      }
+      .message {
+        background: #ffe6f0;
+        padding: 0.5rem 0.75rem;
+        border-radius: 0.75rem;
+        margin-bottom: 0.5rem;
+        opacity: 0;
+        transform: translateY(-10px);
+        animation: fadeIn 0.5s forwards;
+      }
+      #confirmation {
+        display: none;
+        color: #ff69b4;
+        font-weight: bold;
+        margin-top: 0.5rem;
+        animation: fadeOut 3s forwards;
+      }
+
+      @keyframes headerFadeIn {
+        to { opacity: 1; transform: translateY(0); }
+      }
+      @keyframes sectionFadeIn {
+        to { opacity: 1; transform: translateY(0); }
+      }
+      @keyframes footerFadeIn {
+        to { opacity: 1; transform: translateY(0); }
+      }
+      @keyframes fadeOut {
+        0% { opacity: 1; }
+        80% { opacity: 1; }
+        100% { opacity: 0; }
+      }
+      @keyframes fadeIn {
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
       }
     </style>
   </head>
@@ -81,30 +155,71 @@ const pixQRCode = "/pix-qr.png"; // Coloque sua imagem do QR code PIX na pasta p
     </header>
 
     <main>
-      <section>
+      <section style="animation-delay: 0.2s;">
         <div class="icon">🍼</div>
         <h2>Contribuir via PIX</h2>
         <img src={pixQRCode} alt="QR Code PIX" />
         <p>Escaneie o QR code acima para enviar sua contribuição via PIX.</p>
       </section>
 
-      <section>
+      <section style="animation-delay: 0.4s;">
         <div class="icon">🎁</div>
         <h2>Contribuir via PayPal</h2>
         <p>Clique no botão abaixo para contribuir usando o PayPal:</p>
         <a class="button" href={paypalLink} target="_blank">Doar via PayPal</a>
       </section>
 
-      <section>
+      <section style="animation-delay: 0.6s;">
         <div class="icon">💌</div>
         <h2>Mensagem de Carinho</h2>
         <p>Deixe uma mensagem de carinho para o bebê e a família!</p>
-        <p>(Opcional: você pode criar um formulário simples depois)</p>
+
+        <form id="messageForm">
+          <input type="text" id="name" placeholder="Seu nome" required />
+          <textarea id="message" placeholder="Sua mensagem" rows="3" required></textarea>
+          <button class="button" type="submit">Enviar mensagem</button>
+        </form>
+
+        <div id="confirmation">Mensagem enviada 💖</div>
+        <div id="messages"></div>
       </section>
     </main>
 
     <footer>
       Obrigado por celebrar conosco! 💖
     </footer>
+
+    <script>
+      const form = document.getElementById('messageForm');
+      const messagesDiv = document.getElementById('messages');
+      const confirmation = document.getElementById('confirmation');
+      const maxMessages = 10;
+
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const name = document.getElementById('name').value.trim();
+        const message = document.getElementById('message').value.trim();
+        if(name && message){
+          const msgDiv = document.createElement('div');
+          msgDiv.className = 'message';
+          msgDiv.textContent = `${name}: ${message}`;
+          messagesDiv.prepend(msgDiv);
+
+          const allMessages = messagesDiv.querySelectorAll('.message');
+          if(allMessages.length > maxMessages){
+            messagesDiv.removeChild(allMessages[allMessages.length - 1]);
+          }
+
+          form.reset();
+
+          confirmation.style.display = 'block';
+          setTimeout(() => {
+            confirmation.style.display = 'none';
+          }, 3000);
+
+          messagesDiv.scrollTop = 0;
+        }
+      });
+    </script>
   </body>
 </html>
