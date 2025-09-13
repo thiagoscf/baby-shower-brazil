@@ -123,11 +123,18 @@ const paypalLink = "https://www.paypal.com/donate?hosted_button_id=YOUR_BUTTON_I
         background: #fff0f5;
       }
 
+      /* Container dos botões */
+      .button-group {
+        display: flex;
+        justify-content: center; /* centraliza horizontalmente */
+        gap: 0.5rem; /* espaço entre os botões */
+        margin-top: 0.5rem;
+      }
+
       .button {
-        display: block;
+        flex: 1; /* faz os botões ocuparem espaço igual */
         position: relative;
-        margin: 0.5rem 0;
-        padding: 0.5rem 1rem;
+        padding: 0.5rem 0.75rem;
         background: #ff69b4;
         color: white;
         border-radius: 1rem;
@@ -142,7 +149,7 @@ const paypalLink = "https://www.paypal.com/donate?hosted_button_id=YOUR_BUTTON_I
         content: attr(data-emoji);
         position: absolute;
         top: -10px;
-        right: -20px;
+        right: -15px;
         font-size: 1.2rem;
         opacity: 0;
         transition: all 0.3s;
@@ -172,8 +179,13 @@ const paypalLink = "https://www.paypal.com/donate?hosted_button_id=YOUR_BUTTON_I
         color: #ff69b4;
       }
 
+      /* Responsivo */
       @media (max-width: 900px) { .product-grid { grid-template-columns: repeat(2, 1fr); } }
-      @media (max-width: 480px) { .product-grid { grid-template-columns: 1fr; } .product-card img { width: 140px; height: 140px; } }
+      @media (max-width: 480px) { 
+        .product-grid { grid-template-columns: 1fr; } 
+        .product-card img { width: 140px; height: 140px; } 
+        .button-group { flex-direction: column; gap: 0.5rem; }
+      }
     </style>
   </head>
   <body>
@@ -188,8 +200,10 @@ const paypalLink = "https://www.paypal.com/donate?hosted_button_id=YOUR_BUTTON_I
           <img src={product.image} alt={product.title} />
           <h2>{product.title}</h2>
           <p>{product.description}</p>
-          <a class="button" href={product.pix} target="_blank" data-emoji={product.pixEmoji}>{product.pixLabel}</a>
-          <a class="button" href={paypalLink} target="_blank" data-emoji={product.paypalEmoji}>{product.paypalLabel}</a>
+          <div class="button-group">
+            <a class="button" href={product.pix} target="_blank" data-emoji={product.pixEmoji}>{product.pixLabel}</a>
+            <a class="button" href={paypalLink} target="_blank" data-emoji={product.paypalEmoji}>{product.paypalLabel}</a>
+          </div>
         </div>
       ))}
     </main>
