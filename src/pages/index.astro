@@ -5,66 +5,42 @@ const products = [
     title: "Kit SOS Fraldas", 
     image: "/gifts/fraldas.png", 
     pix: "/pix-fraldas.png", 
-    description: "Porque acidentes acontecem... e vão acontecer MUITO! 💩",
-    pixLabel: "💸 Mandar PIX de Emergência (via PIX)",
-    paypalLabel: "🛒 Comprar Fraldas Online (via PayPal)",
-    pixEmoji: "💥",
-    paypalEmoji: "🎁"
+    description: "Porque acidentes acontecem... e vão acontecer MUITO! 💩"
   },
   { 
     id: 2, 
     title: "Spa do Bebê", 
     image: "/gifts/kit-banho.png", 
     pix: "/pix-banho.png", 
-    description: "Sabonete, shampoo e toalhinha para transformar o banho em um dia de princesa 🛁👑",
-    pixLabel: "🫧 Mandar PIX Relaxante (via PIX)",
-    paypalLabel: "🧴 Patrocinar o Spa (via PayPal)",
-    pixEmoji: "🛁",
-    paypalEmoji: "🧴"
+    description: "Sabonete, shampoo e toalhinha para transformar o banho em um dia de princesa 🛁👑"
   },
   { 
     id: 3, 
     title: "Look do Dia (Bebê Fashion Week)", 
     image: "/gifts/roupinha.png", 
     pix: "/pix-roupinha.png", 
-    description: "Macacãozinho fofo para estrelar o próximo desfile da sala de estar 👗✨",
-    pixLabel: "👕 Pagar o Look via PIX",
-    paypalLabel: "💃 Patrocinar o Desfile (via PayPal)",
-    pixEmoji: "👕",
-    paypalEmoji: "💃"
+    description: "Macacãozinho fofo para estrelar o próximo desfile da sala de estar 👗✨"
   },
   { 
     id: 4, 
     title: "Combo MasterChef Baby", 
     image: "/gifts/mamadeira.png", 
     pix: "/pix-mamadeira.png", 
-    description: "Mamadeiras, chupetas e tudo que um mini masterchef precisa para suas receitas de leite 🍶👶",
-    pixLabel: "🍶 Enviar PIX de Leite",
-    paypalLabel: "🍽️ Comprar o Combo MasterChef (via PayPal)",
-    pixEmoji: "🍶",
-    paypalEmoji: "🍽️"
+    description: "Mamadeiras, chupetas e tudo que um mini masterchef precisa para suas receitas de leite 🍶👶"
   },
   { 
     id: 5, 
     title: "Trono Real da Papinha", 
     image: "/gifts/cadeira.png", 
     pix: "/pix-cadeira.png", 
-    description: "Cadeirinha de alimentação para o bebê se sentir o rei da refeição 🍽️👑",
-    pixLabel: "👑 PIX Real",
-    paypalLabel: "🍴 Pagar o Trono (via PayPal)",
-    pixEmoji: "👑",
-    paypalEmoji: "🍴"
+    description: "Cadeirinha de alimentação para o bebê se sentir o rei da refeição 🍽️👑"
   },
   { 
     id: 6, 
     title: "Ferrari do Bebê", 
     image: "/gifts/carrinho.png", 
     pix: "/pix-carrinho.png", 
-    description: "Carrinho para os primeiros rolês de estilo pela vizinhança 🏎️✨",
-    pixLabel: "🏎️ Turbinar com PIX",
-    paypalLabel: "💰 Comprar a Ferrari (via PayPal)",
-    pixEmoji: "🏎️",
-    paypalEmoji: "💰"
+    description: "Carrinho para os primeiros rolês de estilo pela vizinhança 🏎️✨"
   },
 ];
 
@@ -123,53 +99,41 @@ const paypalLink = "https://www.paypal.com/donate?hosted_button_id=YOUR_BUTTON_I
         background: #fff0f5;
       }
 
-      /* Container dos botões */
-      .button-group {
+      /* Container dos ícones */
+      .icon-group {
         display: flex;
-        justify-content: center; /* centraliza horizontalmente */
-        gap: 0.5rem; /* espaço entre os botões */
+        justify-content: center;
+        gap: 1rem;
         margin-top: 0.5rem;
       }
 
-      .button {
-        flex: 1; /* faz os botões ocuparem espaço igual */
-        position: relative;
-        padding: 0.5rem 0.75rem;
-        background: #ff69b4;
-        color: white;
-        border-radius: 1rem;
+      .icon-link {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
         text-decoration: none;
-        font-weight: bold;
-        font-size: 1rem;
+        color: #333;
         transition: transform 0.2s, box-shadow 0.2s;
-        cursor: pointer;
       }
 
-      .button::after {
-        content: attr(data-emoji);
-        position: absolute;
-        top: -10px;
-        right: -15px;
-        font-size: 1.2rem;
-        opacity: 0;
-        transition: all 0.3s;
+      .icon-link img {
+        width: 70px;
+        height: 70px;
+        border-radius: 1rem;
+        border: 3px solid #ffb6c1;
+        background: #fff0f5;
+        margin-bottom: 0.3rem;
+        transition: transform 0.3s;
       }
 
-      .button:hover::after {
-        transform: translateY(-10px);
-        opacity: 1;
+      .icon-link:hover img {
+        transform: scale(1.1);
+        box-shadow: 0 4px 10px rgba(255,105,180,0.5);
       }
 
-      .button:hover {
-        animation: pulse 0.6s;
-        transform: scale(1.05);
-        box-shadow: 0 4px 10px rgba(255,105,180,0.6);
-      }
-
-      @keyframes pulse {
-        0% { transform: scale(1); }
-        50% { transform: scale(1.08); }
-        100% { transform: scale(1); }
+      .icon-link span {
+        font-weight: bold;
+        color: #ff69b4;
       }
 
       footer {
@@ -184,7 +148,7 @@ const paypalLink = "https://www.paypal.com/donate?hosted_button_id=YOUR_BUTTON_I
       @media (max-width: 480px) { 
         .product-grid { grid-template-columns: 1fr; } 
         .product-card img { width: 140px; height: 140px; } 
-        .button-group { flex-direction: column; gap: 0.5rem; }
+        .icon-link img { width: 60px; height: 60px; }
       }
     </style>
   </head>
@@ -200,9 +164,17 @@ const paypalLink = "https://www.paypal.com/donate?hosted_button_id=YOUR_BUTTON_I
           <img src={product.image} alt={product.title} />
           <h2>{product.title}</h2>
           <p>{product.description}</p>
-          <div class="button-group">
-            <a class="button" href={product.pix} target="_blank" data-emoji={product.pixEmoji}>{product.pixLabel}</a>
-            <a class="button" href={paypalLink} target="_blank" data-emoji={product.paypalEmoji}>{product.paypalLabel}</a>
+          <div class="icon-group">
+            {/* QR Code PIX */}
+            <a class="icon-link" href={product.pix} target="_blank">
+              <img src={product.pix} alt="PIX QR Code" />
+              <span>PIX</span>
+            </a>
+            {/* PayPal */}
+            <a class="icon-link" href={paypalLink} target="_blank">
+              <img src="/paypal-icon.png" alt="PayPal" />
+              <span>PayPal</span>
+            </a>
           </div>
         </div>
       ))}
