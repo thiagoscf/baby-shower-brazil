@@ -126,6 +126,7 @@ function priceLabel(price) {
 
       .icon-link span {
         font-weight: bold;
+        color: black;
       }
 
       @keyframes bounce {
@@ -170,11 +171,11 @@ function priceLabel(price) {
           <div class="icon-group">
             <a class="icon-link" href={product.pix} target="_blank">
               <img src={product.pix} alt="PIX QR Code" />
-              <span style={{ color: product.borderColor }}>PIX</span>
+              <span>PIX</span>
             </a>
             <a class="icon-link" href={paypalLink} target="_blank">
               <img src="/paypal-icon.png" alt="PayPal" />
-              <span style={{ color: product.borderColor }}>PayPal</span>
+              <span>PayPal</span>
             </a>
           </div>
         </div>
