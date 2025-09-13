@@ -1,47 +1,11 @@
 ---
 const products = [
-  { 
-    id: 1, 
-    title: "Kit SOS Fraldas", 
-    image: "/gifts/fraldas.png", 
-    pix: "/pix-fraldas.png", 
-    description: "Porque acidentes acontecem... e vão acontecer MUITO! 💩"
-  },
-  { 
-    id: 2, 
-    title: "Spa do Bebê", 
-    image: "/gifts/kit-banho.png", 
-    pix: "/pix-banho.png", 
-    description: "Sabonete, shampoo e toalhinha para transformar o banho em um dia de princesa 🛁👑"
-  },
-  { 
-    id: 3, 
-    title: "Look do Dia (Bebê Fashion Week)", 
-    image: "/gifts/roupinha.png", 
-    pix: "/pix-roupinha.png", 
-    description: "Macacãozinho fofo para estrelar o próximo desfile da sala de estar 👗✨"
-  },
-  { 
-    id: 4, 
-    title: "Combo MasterChef Baby", 
-    image: "/gifts/mamadeira.png", 
-    pix: "/pix-mamadeira.png", 
-    description: "Mamadeiras, chupetas e tudo que um mini masterchef precisa para suas receitas de leite 🍶👶"
-  },
-  { 
-    id: 5, 
-    title: "Trono Real da Papinha", 
-    image: "/gifts/cadeira.png", 
-    pix: "/pix-cadeira.png", 
-    description: "Cadeirinha de alimentação para o bebê se sentir o rei da refeição 🍽️👑"
-  },
-  { 
-    id: 6, 
-    title: "Ferrari do Bebê", 
-    image: "/gifts/carrinho.png", 
-    pix: "/pix-carrinho.png", 
-    description: "Carrinho para os primeiros rolês de estilo pela vizinhança 🏎️✨"
-  },
+  { id: 1, title: "Kit SOS Fraldas", image: "/gifts/fraldas.png", pix: "/pix-fraldas.png", description: "Porque acidentes acontecem... e vão acontecer MUITO! 💩" },
+  { id: 2, title: "Spa do Bebê", image: "/gifts/kit-banho.png", pix: "/pix-banho.png", description: "Sabonete, shampoo e toalhinha para transformar o banho em um dia de princesa 🛁👑" },
+  { id: 3, title: "Look do Dia (Bebê Fashion Week)", image: "/gifts/roupinha.png", pix: "/pix-roupinha.png", description: "Macacãozinho fofo para estrelar o próximo desfile da sala de estar 👗✨" },
+  { id: 4, title: "Combo MasterChef Baby", image: "/gifts/mamadeira.png", pix: "/pix-mamadeira.png", description: "Mamadeiras, chupetas e tudo que um mini masterchef precisa para suas receitas de leite 🍶👶" },
+  { id: 5, title: "Trono Real da Papinha", image: "/gifts/cadeira.png", pix: "/pix-cadeira.png", description: "Cadeirinha de alimentação para o bebê se sentir o rei da refeição 🍽️👑" },
+  { id: 6, title: "Ferrari do Bebê", image: "/gifts/carrinho.png", pix: "/pix-carrinho.png", description: "Carrinho para os primeiros rolês de estilo pela vizinhança 🏎️✨" },
 ];
 
 const paypalLink = "https://www.paypal.com/donate?hosted_button_id=YOUR_BUTTON_ID";
@@ -82,13 +46,11 @@ const paypalLink = "https://www.paypal.com/donate?hosted_button_id=YOUR_BUTTON_I
         padding: 1.5rem;
         border-radius: 1.5rem;
         box-shadow: 0 6px 12px rgba(0,0,0,0.1);
-        text-align: center;
-        transition: transform 0.3s, box-shadow 0.3s;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between; /* força ícones sempre ao fundo */
       }
-      .product-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 10px 20px rgba(0,0,0,0.15);
-      }
+
       .product-card img {
         width: 150px;
         height: 150px;
@@ -103,7 +65,7 @@ const paypalLink = "https://www.paypal.com/donate?hosted_button_id=YOUR_BUTTON_I
       .icon-group {
         display: flex;
         justify-content: center;
-        gap: 1rem;
+        gap: 1.5rem;
         margin-top: 0.5rem;
       }
 
@@ -113,7 +75,6 @@ const paypalLink = "https://www.paypal.com/donate?hosted_button_id=YOUR_BUTTON_I
         align-items: center;
         text-decoration: none;
         color: #333;
-        transition: transform 0.2s, box-shadow 0.2s;
       }
 
       .icon-link img {
@@ -123,17 +84,26 @@ const paypalLink = "https://www.paypal.com/donate?hosted_button_id=YOUR_BUTTON_I
         border: 3px solid #ffb6c1;
         background: #fff0f5;
         margin-bottom: 0.3rem;
-        transition: transform 0.3s;
+        transition: transform 0.3s, box-shadow 0.3s;
       }
 
+      /* Animação bounce ao hover */
       .icon-link:hover img {
-        transform: scale(1.1);
-        box-shadow: 0 4px 10px rgba(255,105,180,0.5);
+        animation: bounce 0.6s;
+        box-shadow: 0 4px 12px rgba(255,105,180,0.5);
       }
 
       .icon-link span {
         font-weight: bold;
         color: #ff69b4;
+      }
+
+      @keyframes bounce {
+        0%   { transform: translateY(0); }
+        25%  { transform: translateY(-10px); }
+        50%  { transform: translateY(0); }
+        75%  { transform: translateY(-5px); }
+        100% { transform: translateY(0); }
       }
 
       footer {
@@ -161,9 +131,11 @@ const paypalLink = "https://www.paypal.com/donate?hosted_button_id=YOUR_BUTTON_I
     <main class="product-grid">
       {products.map((product) => (
         <div class="product-card">
-          <img src={product.image} alt={product.title} />
-          <h2>{product.title}</h2>
-          <p>{product.description}</p>
+          <div>
+            <img src={product.image} alt={product.title} />
+            <h2>{product.title}</h2>
+            <p>{product.description}</p>
+          </div>
           <div class="icon-group">
             {/* QR Code PIX */}
             <a class="icon-link" href={product.pix} target="_blank">
