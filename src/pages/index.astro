@@ -113,7 +113,7 @@ function priceLabel(price) {
         width: 70px;
         height: 70px;
         border-radius: 1rem;
-        border: 3px solid #ffb6c1;
+        border: 3px solid #555; /* Matches description text */
         background: #fff0f5;
         margin-bottom: 0.3rem;
         transition: transform 0.3s, box-shadow 0.3s;
@@ -121,12 +121,12 @@ function priceLabel(price) {
 
       .icon-link:hover img {
         animation: bounce 0.6s;
-        box-shadow: 0 4px 12px rgba(255,105,180,0.5);
+        box-shadow: 0 4px 12px rgba(85,85,85,0.5);
       }
 
       .icon-link span {
-        font-weight: bold;
-        color: black;
+        color: #555; /* Matches description text */
+        font-weight: normal; /* Remove bold */
       }
 
       @keyframes bounce {
