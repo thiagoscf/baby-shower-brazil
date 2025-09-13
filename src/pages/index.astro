@@ -1,24 +1,22 @@
 ---
 const products = [
-  { id: 1, title: "Kit SOS Fraldas", image: "/gifts/fraldas.png", pix: "/pix-fraldas.png", description: "Porque acidentes acontecem... e vão acontecer MUITO! 💩", price: "R$25", bgColor: "#ffe6f0" },
-  { id: 2, title: "Spa do Bebê", image: "/gifts/kit-banho.png", pix: "/pix-banho.png", description: "Sabonete, shampoo e toalhinha para transformar o banho em um dia de princesa 🛁👑", price: "R$50", bgColor: "#fff0b3" },
-  { id: 3, title: "Look do Dia (Bebê Fashion Week)", image: "/gifts/roupinha.png", pix: "/pix-roupinha.png", description: "Macacãozinho fofo para estrelar o próximo desfile da sala de estar 👗✨", price: "R$100", bgColor: "#cceeff" },
-  { id: 4, title: "Combo MasterChef Baby", image: "/gifts/mamadeira.png", pix: "/pix-mamadeira.png", description: "Mamadeiras, chupetas e tudo que um mini masterchef precisa para suas receitas de leite 🍶👶", price: "R$250", bgColor: "#d5ffcc" },
-  { id: 5, title: "Trono Real da Papinha", image: "/gifts/cadeira.png", pix: "/pix-cadeira.png", description: "Cadeirinha de alimentação para o bebê se sentir o rei da refeição 🍽️👑", price: "R$500", bgColor: "#ffccf2" },
-  { id: 6, title: "Ferrari do Bebê", image: "/gifts/carrinho.png", pix: "/pix-carrinho.png", description: "Carrinho para os primeiros rolês de estilo pela vizinhança 🏎️✨", price: "R$1000", bgColor: "#ffb366" },
+  { id: 1, title: "Kit SOS Fraldas", image: "/gifts/fraldas.png", pix: "/pix-fraldas.png", description: "Porque acidentes acontecem... e vão acontecer MUITO! 💩", price: "R$25", bgColor: "#ffb3c6", borderColor: "#ff6699" },
+  { id: 2, title: "Spa do Bebê", image: "/gifts/kit-banho.png", pix: "/pix-banho.png", description: "Sabonete, shampoo e toalhinha para transformar o banho em um dia de princesa 🛁👑", price: "R$50", bgColor: "#ffe699", borderColor: "#ffcc33" },
+  { id: 3, title: "Look do Dia (Bebê Fashion Week)", image: "/gifts/roupinha.png", pix: "/pix-roupinha.png", description: "Macacãozinho fofo para estrelar o próximo desfile da sala de estar 👗✨", price: "R$100", bgColor: "#99d6ff", borderColor: "#3399ff" },
+  { id: 4, title: "Combo MasterChef Baby", image: "/gifts/mamadeira.png", pix: "/pix-mamadeira.png", description: "Mamadeiras, chupetas e tudo que um mini masterchef precisa para suas receitas de leite 🍶👶", price: "R$250", bgColor: "#b3ffcc", borderColor: "#33cc66" },
+  { id: 5, title: "Trono Real da Papinha", image: "/gifts/cadeira.png", pix: "/pix-cadeira.png", description: "Cadeirinha de alimentação para o bebê se sentir o rei da refeição 🍽️👑", price: "R$500", bgColor: "#e6b3ff", borderColor: "#cc66ff" },
+  { id: 6, title: "Ferrari do Bebê", image: "/gifts/carrinho.png", pix: "/pix-carrinho.png", description: "Carrinho para os primeiros rolês de estilo pela vizinhança 🏎️✨", price: "R$1000", bgColor: "#ff9966", borderColor: "#cc3300" },
 ];
 
 const paypalLink = "https://www.paypal.com/donate?hosted_button_id=YOUR_BUTTON_ID";
 
-/* Função para escolher a cor do preço conforme faixa */
 function priceColor(price) {
   const value = parseInt(price.replace(/[^\d]/g, ''), 10);
-  if (value <= 100) return "#ff3399";      // rosa vibrante para preços baixos
-  if (value <= 500) return "#9900cc";      // roxo para preços médios
-  return "#cc0000";                         // vermelho forte para preço alto
+  if (value <= 100) return "#ff3399";
+  if (value <= 500) return "#9900cc";
+  return "#cc0000";
 }
 
-/* Função para etiqueta divertida */
 function priceLabel(price) {
   const value = parseInt(price.replace(/[^\d]/g, ''), 10);
   if (value <= 100) return "Bebê Econômico 🍼";
@@ -45,20 +43,22 @@ function priceLabel(price) {
         color: #333;
       }
       header { text-align: center; margin-bottom: 2rem; }
-      h1 { font-size: 3rem; margin-bottom: 0.5rem; color: #ff69b4; }
-      h2 { font-size: 1.5rem; margin: 0.5rem 0; color: #ff85c1; }
+      h1 { font-size: 3rem; margin-bottom: 0.5rem; color: #ff69b4; text-shadow: 1px 1px 3px rgba(0,0,0,0.3); }
+      h2 { font-size: 1.5rem; margin: 0.5rem 0; color: #ff85c1; text-shadow: 1px 1px 2px rgba(0,0,0,0.2); }
       p { color: #555; font-size: 1rem; }
 
       .price-label {
         font-size: 1rem;
         font-weight: bold;
         margin-bottom: 0.3rem;
+        text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
       }
 
       .price {
         font-size: 1.2rem;
         font-weight: bold;
         margin-bottom: 0.5rem;
+        text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
       }
 
       .product-grid {
@@ -72,7 +72,6 @@ function priceLabel(price) {
       .product-card {
         padding: 1.5rem;
         border-radius: 1.5rem;
-        box-shadow: 0 6px 12px rgba(0,0,0,0.1);
         display: flex;
         flex-direction: column;
         justify-content: space-between;
@@ -160,7 +159,7 @@ function priceLabel(price) {
 
     <main class="product-grid">
       {products.map((product) => (
-        <div class="product-card" style={{backgroundColor: product.bgColor}}>
+        <div class="product-card" style={{backgroundColor: product.bgColor, border: `4px solid ${product.borderColor}`}}>
           <div>
             <img src={product.image} alt={product.title} />
             <h2>{product.title}</h2>
