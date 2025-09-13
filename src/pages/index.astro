@@ -2,7 +2,7 @@
 const paypalLink = "https://www.paypal.com/donate?hosted_button_id=YOUR_BUTTON_ID";
 const defaultPixQRCode = "/pix-qr.png"; // Coloque sua imagem do QR code PIX na pasta public
 
-// Six fake products — change title, image, pix, description later
+// Seis produtos — troque imagem, descrição e pix depois
 const products = [
   { id: 1, title: "Produto 1", image: "/placeholder-1.png", pix: defaultPixQRCode, description: "Descrição do produto 1 (adicione sua descrição aqui)" },
   { id: 2, title: "Produto 2", image: "/placeholder-2.png", pix: defaultPixQRCode, description: "Descrição do produto 2 (adicione sua descrição aqui)" },
@@ -55,12 +55,13 @@ const products = [
         max-width: 1100px;
       }
 
-      /* grid for products */
+      /* grid para produtos */
       .products-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        grid-template-columns: repeat(3, 1fr);
         gap: 1rem;
         align-items: start;
+        justify-items: center;
       }
 
       .product-card {
@@ -70,6 +71,7 @@ const products = [
         box-shadow: 0 6px 12px rgba(0,0,0,0.08);
         text-align: center;
         width: 100%;
+        max-width: 300px;
         transition: transform 0.25s, box-shadow 0.25s;
         opacity: 0;
         transform: translateY(20px);
@@ -100,7 +102,7 @@ const products = [
       .product-desc {
         font-size: 0.95rem;
         color: #555;
-        min-height: 44px; /* keeps cards similar height */
+        min-height: 44px;
         margin-bottom: 0.75rem;
       }
 
@@ -138,7 +140,7 @@ const products = [
         color: white;
       }
 
-      /* message section styles kept from original */
+      /* seção de mensagens */
       .message-section {
         background: white;
         padding: 1rem;
@@ -196,29 +198,22 @@ const products = [
         animation: footerFadeIn 1s forwards;
       }
 
-      @keyframes headerFadeIn {
-        to { opacity: 1; transform: translateY(0); }
-      }
-      @keyframes sectionFadeIn {
-        to { opacity: 1; transform: translateY(0); }
-      }
-      @keyframes footerFadeIn {
-        to { opacity: 1; transform: translateY(0); }
-      }
-      @keyframes fadeOut {
-        0% { opacity: 1; }
-        80% { opacity: 1; }
-        100% { opacity: 0; }
-      }
-      @keyframes fadeIn {
-        to {
-          opacity: 1;
-          transform: translateY(0);
+      @keyframes headerFadeIn { to { opacity: 1; transform: translateY(0); } }
+      @keyframes sectionFadeIn { to { opacity: 1; transform: translateY(0); } }
+      @keyframes footerFadeIn { to { opacity: 1; transform: translateY(0); } }
+      @keyframes fadeOut { 0% { opacity: 1; } 80% { opacity: 1; } 100% { opacity: 0; } }
+      @keyframes fadeIn { to { opacity: 1; transform: translateY(0); } }
+
+      /* responsivo: 2 por linha em tablets, 1 no celular */
+      @media (max-width: 900px) {
+        .products-grid {
+          grid-template-columns: repeat(2, 1fr);
         }
       }
-
-      /* small screens tweaks */
       @media (max-width: 480px) {
+        .products-grid {
+          grid-template-columns: 1fr;
+        }
         .product-img { width: 140px; height: 140px; }
       }
     </style>
@@ -239,12 +234,9 @@ const products = [
             <div class="product-desc">{product.description}</div>
 
             <div class="buttons-row">
-              <!-- PIX: opens the product's pix QR image in a new tab -->
               <a class="button secondary" href={product.pix} target="_blank" rel="noopener noreferrer" aria-label={`Contribuir via PIX para ${product.title}`}>
                 Contribuir via PIX
               </a>
-
-              <!-- PayPal: appends item_name to the PayPal donate link for identification -->
               <a
                 class="button"
                 href={`${paypalLink}&item_name=${encodeURIComponent(product.title)}`}
@@ -259,8 +251,7 @@ const products = [
         ))}
       </section>
 
-      <!-- Message section (kept from original so visitors can leave messages) -->
-      <section class="message-section" style="margin-top: 1.25rem;">
+      <section class="message-section">
         <div class="icon">💌</div>
         <h2>Mensagem de Carinho</h2>
         <p>Deixe uma mensagem de carinho para o bebê e a família!</p>
@@ -281,7 +272,6 @@ const products = [
     </footer>
 
     <script>
-      // Message form JS (kept same logic)
       const form = document.getElementById('messageForm');
       const messagesDiv = document.getElementById('messages');
       const confirmation = document.getElementById('confirmation');
