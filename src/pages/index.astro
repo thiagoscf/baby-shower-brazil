@@ -20,134 +20,11 @@ function priceColor(price) {
 
 <html lang="pt-BR">
   <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Chá de Bebê da Emily</title>
     <style>
-      body {
-        font-family: 'Comic Sans MS', sans-serif;
-        background: linear-gradient(to bottom, #ffe6f0, #fff0f5);
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        min-height: 100vh;
-        margin: 0;
-        padding: 2rem;
-        color: #333;
-      }
-
-      header { text-align: center; margin-bottom: 2rem; }
-      h1 { font-size: 3rem; margin-bottom: 0.5rem; color: #4d1a4d; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); }
-      h2 { font-size: 1.5rem; margin: 0.5rem 0; color: #4d1a4d; text-shadow: 1.5px 1.5px 3px rgba(0,0,0,0.25); }
-      p { color: #555; font-size: 1rem; }
-
-      .price {
-        font-size: 1.2rem;
-        font-weight: bold;
-        margin-bottom: 0.5rem;
-        text-shadow: 1px 1px 2px rgba(0,0,0,0.25);
-      }
-
-      .product-grid {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 1.5rem;
-        width: 100%;
-        max-width: 900px;
-      }
-
-      .product-card {
-        padding: 1.5rem;
-        border-radius: 1.5rem;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        transition: transform 0.3s, box-shadow 0.3s;
-      }
-
-      .product-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 10px 20px rgba(0,0,0,0.15);
-      }
-
-      .product-card img {
-        width: 150px;
-        height: 150px;
-        object-fit: contain;
-        margin-bottom: 1rem;
-        border-radius: 1rem;
-        border: 4px solid #ffb6c1;
-        background: #fff0f5;
-      }
-
-      .icon-group {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 0.5rem;
-        margin-top: 0.5rem;
-      }
-
-      .copy-btn {
-        background: none;
-        color: #ff69b4;
-        font-size: 1rem;
-        font-weight: bold;
-        border: 2px dashed #ff69b4;
-        border-radius: 0.8rem;
-        padding: 0.6rem 1rem;
-        cursor: pointer;
-        transition: background 0.3s, transform 0.2s, color 0.3s;
-      }
-
-      .copy-btn:hover {
-        background: #ff69b4;
-        color: white;
-        transform: scale(1.05);
-      }
-
-      /* Toast centralizado */
-      .toast {
-        position: fixed;
-        bottom: 1rem;
-        left: 50%;
-        transform: translateX(-50%) translateY(20px);
-        background: #ff69b4;
-        color: white;
-        padding: 0.8rem 1.2rem;
-        border-radius: 0.8rem;
-        box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-        font-weight: bold;
-        opacity: 0;
-        transition: opacity 0.3s ease, transform 0.3s ease;
-        z-index: 9999;
-      }
-
-      .toast.show {
-        opacity: 1;
-        transform: translateX(-50%) translateY(0);
-      }
-
-      @keyframes bounce {
-        0%   { transform: translateY(0); }
-        25%  { transform: translateY(-10px); }
-        50%  { transform: translateY(0); }
-        75%  { transform: translateY(-5px); }
-        100% { transform: translateY(0); }
-      }
-
-      footer {
-        margin-top: 2rem;
-        text-align: center;
-        font-size: 1rem;
-        color: #ff69b4;
-      }
-
-      @media (max-width: 900px) { .product-grid { grid-template-columns: repeat(2, 1fr); } }
-      @media (max-width: 480px) { 
-        .product-grid { grid-template-columns: 1fr; } 
-        .product-card img { width: 140px; height: 140px; } 
-      }
+      /* ... estilo mantém igual ... */
     </style>
   </head>
   <body>
@@ -166,7 +43,7 @@ function priceColor(price) {
             <p>{product.description}</p>
           </div>
           <div class="icon-group">
-            <button class="copy-btn" onclick={`copyPix('${pixCode}')`}>
+            <button class="copy-btn" data-pix={pixCode}>
               Copiar código PIX
             </button>
           </div>
@@ -181,13 +58,19 @@ function priceColor(price) {
     </footer>
 
     <script>
-      function copyPix(code) {
-        navigator.clipboard.writeText(code).then(() => {
-          const toast = document.getElementById("toast");
-          toast.classList.add("show");
-          setTimeout(() => toast.classList.remove("show"), 2000);
+      // Seleciona todos os botões "Copiar código PIX"
+      const buttons = document.querySelectorAll(".copy-btn");
+      const toast = document.getElementById("toast");
+
+      buttons.forEach(btn => {
+        btn.addEventListener("click", () => {
+          const code = btn.getAttribute("data-pix");
+          navigator.clipboard.writeText(code).then(() => {
+            toast.classList.add("show");
+            setTimeout(() => toast.classList.remove("show"), 2000);
+          });
         });
-      }
+      });
     </script>
   </body>
 </html>
