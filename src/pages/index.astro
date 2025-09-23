@@ -24,7 +24,7 @@ function priceColor(price) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Chá de Bebê da Emily</title>
     <style>
-      /* ... estilo mantém igual ... */
+      /* ... seu estilo atual permanece igual ... */
     </style>
   </head>
   <body>
@@ -43,7 +43,8 @@ function priceColor(price) {
             <p>{product.description}</p>
           </div>
           <div class="icon-group">
-            <button class="copy-btn" data-pix={pixCode}>
+            <!-- Botão sem onclick inline -->
+            <button class="copy-btn">
               Copiar código PIX
             </button>
           </div>
@@ -58,14 +59,13 @@ function priceColor(price) {
     </footer>
 
     <script>
-      // Seleciona todos os botões "Copiar código PIX"
+      // Seleciona todos os botões e adiciona o evento de clique
       const buttons = document.querySelectorAll(".copy-btn");
       const toast = document.getElementById("toast");
 
       buttons.forEach(btn => {
         btn.addEventListener("click", () => {
-          const code = btn.getAttribute("data-pix");
-          navigator.clipboard.writeText(code).then(() => {
+          navigator.clipboard.writeText("thiagoscf@gmail.com").then(() => {
             toast.classList.add("show");
             setTimeout(() => toast.classList.remove("show"), 2000);
           });
