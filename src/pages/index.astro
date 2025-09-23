@@ -27,6 +27,19 @@ function priceColor(price) {
     <!-- Favicon using ribbon emoji -->
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎀</text></svg>">
 
+    <!-- Open Graph meta tags for link previews -->
+    <meta property="og:title" content="Chá de Bebê da Emily 🎀" />
+    <meta property="og:description" content="Escolha um presente divertido e contribua para a alegria da família! 🍼💖" />
+    <meta property="og:image" content="/share-image.png" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://your-site-url.com" />
+
+    <!-- Twitter Card meta tags -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Chá de Bebê da Emily 🎀" />
+    <meta name="twitter:description" content="Escolha um presente divertido e contribua para a alegria da família! 🍼💖" />
+    <meta name="twitter:image" content="/share-image.png" />
+
     <style>
       body { font-family: 'Comic Sans MS', sans-serif; background: linear-gradient(to bottom, #ffe6f0, #fff0f5); display:flex; flex-direction:column; align-items:center; min-height:100vh; margin:0; padding:2rem; color:#333; }
       header { text-align:center; margin-bottom:2rem; }
@@ -36,8 +49,26 @@ function priceColor(price) {
       .price { font-size:1.2rem; font-weight:bold; margin-bottom:0.5rem; text-shadow:1px 1px 2px rgba(0,0,0,0.25); }
       .product-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1.5rem; width:100%; max-width:900px; }
       .product-card { padding:1.5rem; border-radius:1.5rem; display:flex; flex-direction:column; justify-content:space-between; transition: transform 0.3s, box-shadow 0.3s; position: relative; }
+
+      /* Center images and text */
+      .product-card > div {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+
+      .product-card img {
+        width:150px;
+        height:150px;
+        object-fit:contain;
+        margin-bottom:1rem;
+        border-radius:1rem;
+        border:4px solid #ffb6c1;
+        background:#fff0f5;
+      }
+
       .product-card:hover { transform:translateY(-5px); box-shadow:0 10px 20px rgba(0,0,0,0.15); }
-      .product-card img { width:150px; height:150px; object-fit:contain; margin-bottom:1rem; border-radius:1rem; border:4px solid #ffb6c1; background:#fff0f5; }
       .icon-group { display:flex; justify-content:center; margin-top:0.5rem; }
       .copy-btn { background:none; color:#ff69b4; font-size:1rem; font-weight:bold; border:2px dashed #ff69b4; border-radius:0.8rem; padding:0.6rem 1rem; cursor:pointer; transition: background 0.3s, transform 0.2s, color 0.3s; }
       .copy-btn:hover { background:#ff69b4; color:white; transform:scale(1.05); }
