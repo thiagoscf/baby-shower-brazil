@@ -4,7 +4,7 @@ const products = [
   { id: 2, title: "Spa do Bebê", image: "/gifts/spa-do-bebe.png", description: "Sabonete, shampoo e toalhinha para transformar o banho em um dia de princesa 🛁👑", price: "R$50", bgGradient: "linear-gradient(135deg, #fff4b3, #ffeb66)", borderColor: "#ffdb66" },
   { id: 3, title: "Look do Dia (Bebê Fashion Week)", image: "/gifts/look-do-dia.png", description: "Macacãozinho fofo para estrelar o próximo desfile da sala de estar 👗✨", price: "R$100", bgGradient: "linear-gradient(135deg, #b3e0ff, #66c3ff)", borderColor: "#66b3ff" },
   { id: 4, title: "Combo MasterChef Baby", image: "/gifts/combo-masterchef-baby.png", description: "Mamadeiras, chupetas e tudo que um mini masterchef precisa para suas receitas de leite 🍶👶", price: "R$150", bgGradient: "linear-gradient(135deg, #b3ffd9, #66ffb3)", borderColor: "#66ffb3" },
-  { id: 5, title: "Trono Real da Papinha", image: "/gifts/trono-real-papinha.png", description: "Cadeirinha de alimentação para o bebê se sentir o rei da refeição 🍽️👑", price: "R$200", bgGradient: "linear-gradient(135deg, #e8b3ff, #c780ff)", borderColor: "#cc99ff" },
+  { id: 5, title: "Trono Real da Papinha", image: "/gifts/cadeira-papinha.png", description: "Cadeirinha de alimentação para o bebê se sentir o rei da refeição 🍽️👑", price: "R$200", bgGradient: "linear-gradient(135deg, #e8b3ff, #c780ff)", borderColor: "#cc99ff" },
   { id: 6, title: "Ferrari do Bebê", image: "/gifts/ferrari-do-bebe.png", description: "Carrinho para os primeiros rolês de estilo pela vizinhança 🏎️✨", price: "R$250", bgGradient: "linear-gradient(135deg, #ffc27f, #ff9e4d)", borderColor: "#ff9966" },
 ];
 
@@ -24,17 +24,17 @@ function priceColor(price) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Chá de Bebê da Emily</title>
 
-    <!-- Favicon using ribbon emoji -->
+    <!-- Favicon with ribbon emoji -->
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎀</text></svg>">
 
-    <!-- Open Graph meta tags for link previews -->
+    <!-- Open Graph Meta Tags -->
     <meta property="og:title" content="Chá de Bebê da Emily 🎀" />
     <meta property="og:description" content="Escolha um presente divertido e contribua para a alegria da família! 🍼💖" />
     <meta property="og:image" content="/share-image.png" />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://your-site-url.com" />
+    <meta property="og:url" content="https://seu-site.com" />
 
-    <!-- Twitter Card meta tags -->
+    <!-- Twitter Card (Optional) -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Chá de Bebê da Emily 🎀" />
     <meta name="twitter:description" content="Escolha um presente divertido e contribua para a alegria da família! 🍼💖" />
@@ -48,27 +48,10 @@ function priceColor(price) {
       p { color:#555; font-size:1rem; }
       .price { font-size:1.2rem; font-weight:bold; margin-bottom:0.5rem; text-shadow:1px 1px 2px rgba(0,0,0,0.25); }
       .product-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1.5rem; width:100%; max-width:900px; }
-      .product-card { padding:1.5rem; border-radius:1.5rem; display:flex; flex-direction:column; justify-content:space-between; transition: transform 0.3s, box-shadow 0.3s; position: relative; }
-
-      /* Center images and text */
-      .product-card > div {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-      }
-
-      .product-card img {
-        width:150px;
-        height:150px;
-        object-fit:contain;
-        margin-bottom:1rem;
-        border-radius:1rem;
-        border:4px solid #ffb6c1;
-        background:#fff0f5;
-      }
-
+      .product-card { padding:1.5rem; border-radius:1.5rem; display:flex; flex-direction:column; justify-content:space-between; transition: transform 0.3s, box-shadow 0.3s; }
       .product-card:hover { transform:translateY(-5px); box-shadow:0 10px 20px rgba(0,0,0,0.15); }
+      .product-card div { display:flex; flex-direction:column; align-items:center; text-align:center; }
+      .product-card img { width:150px; height:150px; object-fit:contain; margin-bottom:1rem; border-radius:1rem; border:4px solid #ffb6c1; background:#fff0f5; }
       .icon-group { display:flex; justify-content:center; margin-top:0.5rem; }
       .copy-btn { background:none; color:#ff69b4; font-size:1rem; font-weight:bold; border:2px dashed #ff69b4; border-radius:0.8rem; padding:0.6rem 1rem; cursor:pointer; transition: background 0.3s, transform 0.2s, color 0.3s; }
       .copy-btn:hover { background:#ff69b4; color:white; transform:scale(1.05); }
