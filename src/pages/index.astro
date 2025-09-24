@@ -57,6 +57,7 @@ function priceColor(price) {
       .copy-btn:hover { background:#ff69b4; color:white; transform:scale(1.05); }
       .toast { position:fixed; bottom:1rem; left:50%; transform:translateX(-50%) translateY(20px); background:#ff69b4; color:white; padding:0.8rem 1.2rem; border-radius:0.8rem; box-shadow:0 4px 10px rgba(0,0,0,0.2); font-weight:bold; opacity:0; transition: opacity 0.3s ease, transform 0.3s ease; z-index:9999; }
       .toast.show { opacity:1; transform:translateX(-50%) translateY(0); }
+      .extra-info { font-size: 0.95rem; color: #ff69b4; font-style: italic; margin-top: 0.5rem; }
       footer { margin-top:2rem; text-align:center; font-size:1rem; color:#ff69b4; }
       @media (max-width:900px) { .product-grid { grid-template-columns:repeat(2,1fr); } }
       @media (max-width:480px) { .product-grid { grid-template-columns:1fr; } .product-card img { width:140px; height:140px; } }
@@ -66,6 +67,7 @@ function priceColor(price) {
     <header>
       <h1>🎀 Bem-vindos ao Chá de Bebê da Emily! 🎀</h1>
       <p>Escolha um presente divertido e contribua para a alegria da família! 🍼💖</p>
+      <p class="extra-info">Os valores abaixo são apenas sugestões. Fique à vontade para contribuir com qualquer valor! 💖</p>
     </header>
 
     <main class="product-grid">
