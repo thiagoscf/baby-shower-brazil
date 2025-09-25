@@ -34,7 +34,7 @@ function priceColor(price) {
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://seu-site.com" />
 
-    <!-- Twitter Card (Optional) -->
+    <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Chá de Bebê da Emily 🎀" />
     <meta name="twitter:description" content="Escolha um presente divertido e contribua para a alegria da família! 🍼💖" />
@@ -60,11 +60,14 @@ function priceColor(price) {
         text-shadow:2px 2px 4px rgba(0,0,0,0.3);
       }
       h2 {
-        font-size: clamp(1.2rem, 4vw, 1.5rem);
+        font-size: clamp(1rem, 4vw, 1.2rem);
         margin:0.5rem 0;
         color:#4d1a4d;
         text-shadow:1.5px 1.5px 3px rgba(0,0,0,0.25);
         text-align:center;
+        white-space: nowrap;      /* Keep on one line */
+        overflow: hidden;         /* Hide overflow */
+        text-overflow: ellipsis;  /* Add … if too long */
       }
       p { color:#555; font-size:1rem; }
       .price {
@@ -161,9 +164,10 @@ function priceColor(price) {
         .product-grid { grid-template-columns:repeat(2,1fr); }
       }
       @media (max-width:480px) {
-        .product-grid { grid-template-columns:1fr; } /* exibe um card por vez */
-        .product-card img { width:120px; height:120px; } /* imagens menores no mobile */
-        .product-card { padding: 1rem; }
+        .product-grid { grid-template-columns:1fr; } 
+        .product-card img { width:120px; height:120px; } 
+        .product-card { padding: 1rem; margin-bottom:1rem; }
+        .product-card h2 { font-size:1rem; } /* shrink titles on mobile */
       }
     </style>
   </head>
@@ -184,7 +188,7 @@ function priceColor(price) {
             <p>{product.description}</p>
           </div>
           <div class="icon-group">
-            <button class="copy-btn">
+            <button class="copy-btn" aria-label={`Copiar código PIX de ${product.title}`}>
               Copiar código PIX
             </button>
           </div>
@@ -201,8 +205,9 @@ function priceColor(price) {
     <script>
       document.querySelectorAll('.copy-btn').forEach(btn => {
         btn.addEventListener('click', () => {
-          navigator.clipboard.writeText("thiagoscf@gmail.com").then(() => {
+          navigator.clipboard.writeText(pixCode).then(() => {
             const toast = document.getElementById('toast');
+            toast.textContent = `✅ Código PIX copiado para ${btn.closest('.product-card').querySelector('h2').textContent}!`;
             toast.classList.add('show');
             setTimeout(() => toast.classList.remove('show'), 2000);
           });
