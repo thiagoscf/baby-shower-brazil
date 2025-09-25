@@ -200,7 +200,7 @@ function priceColor(price) {
       <h1>🎀 Chá de Bebê da Emily! 🎀</h1>
       <p>Escolha um presente divertido e contribua para a alegria da família! 💖</p>
       <p class="extra-info">Os valores abaixo são apenas sugestões. Fique à vontade para contribuir com qualquer valor! 🍼</p>
-      <p class="extra-info">Após clicar em "Copiar código PIX", abra o aplicativo do seu banco, cole a chave PIX e digite o valor desejado.</p>
+      <p class="extra-info">Após clicar em "Copiar código PIX", abra o seu aplicativo de banco, cole a chave PIX e digite o valor desejado.</p>
     </header>
 
     <main class="product-grid">
@@ -233,7 +233,7 @@ function priceColor(price) {
         btn.addEventListener('click', () => {
           navigator.clipboard.writeText(pixCode).then(() => {
             const toast = document.getElementById('toast');
-            toast.textContent = `✅ Código PIX copiado para ${btn.closest('.product-card').querySelector('h2').textContent}!`;
+            toast.textContent = "✅ Código PIX copiado!";
             toast.classList.add('show');
             setTimeout(() => toast.classList.remove('show'), 2000);
           }).catch(() => {
