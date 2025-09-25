@@ -52,13 +52,19 @@ function priceColor(price) {
         padding:2rem;
         color:#333;
       }
+
       header { text-align:center; margin-bottom:2rem; }
+
       h1 {
         font-size: clamp(1.8rem, 6vw, 3rem);
         margin-bottom:0.5rem;
         color:#4d1a4d;
         text-shadow:2px 2px 4px rgba(0,0,0,0.3);
+        white-space: nowrap;        /* Keep on one line */
+        overflow: hidden;
+        text-overflow: ellipsis;
       }
+
       h2 {
         font-size: clamp(1rem, 4vw, 1.2rem);
         margin:0.5rem 0;
@@ -69,13 +75,16 @@ function priceColor(price) {
         overflow: hidden;         /* Hide overflow */
         text-overflow: ellipsis;  /* Add … if too long */
       }
+
       p { color:#555; font-size:1rem; }
+
       .price {
         font-size:1.2rem;
         font-weight:bold;
         margin-bottom:0.5rem;
         text-shadow:1px 1px 2px rgba(0,0,0,0.25);
       }
+
       .product-grid {
         display:grid;
         grid-template-columns:repeat(3,1fr);
@@ -83,6 +92,7 @@ function priceColor(price) {
         width:100%;
         max-width:900px;
       }
+
       .product-card {
         padding:1.5rem;
         border-radius:1.5rem;
@@ -91,16 +101,19 @@ function priceColor(price) {
         justify-content:space-between;
         transition: transform 0.3s, box-shadow 0.3s;
       }
+
       .product-card:hover {
         transform:translateY(-5px);
         box-shadow:0 10px 20px rgba(0,0,0,0.15);
       }
+
       .product-card div {
         display:flex;
         flex-direction:column;
         align-items:center;
         text-align:center;
       }
+
       .product-card img {
         width:150px;
         height:150px;
@@ -110,11 +123,13 @@ function priceColor(price) {
         border:4px solid #ffb6c1;
         background:#fff0f5;
       }
+
       .icon-group {
         display:flex;
         justify-content:center;
         margin-top:0.5rem;
       }
+
       .copy-btn {
         background:none;
         color:#ff69b4;
@@ -126,11 +141,13 @@ function priceColor(price) {
         cursor:pointer;
         transition: background 0.3s, transform 0.2s, color 0.3s;
       }
+
       .copy-btn:hover {
         background:#ff69b4;
         color:white;
         transform:scale(1.05);
       }
+
       .toast {
         position:fixed;
         bottom:1rem;
@@ -146,31 +163,38 @@ function priceColor(price) {
         transition: opacity 0.3s ease, transform 0.3s ease;
         z-index:9999;
       }
+
       .toast.show { opacity:1; transform:translateX(-50%) translateY(0); }
+
       .extra-info {
         font-size: 0.95rem;
         color: #ff69b4;
         font-style: italic;
         margin-top: 0.5rem;
       }
+
       footer {
         margin-top:2rem;
         text-align:center;
         font-size:1rem;
         color:#ff69b4;
       }
+
       /* Responsividade */
       @media (max-width:900px) {
         .product-grid { grid-template-columns:repeat(2,1fr); }
       }
+
       @media (max-width:480px) {
         .product-grid { grid-template-columns:1fr; } 
         .product-card img { width:120px; height:120px; } 
         .product-card { padding: 1rem; margin-bottom:1rem; }
-        .product-card h2 { font-size:1rem; } /* shrink titles on mobile */
+        h1 { font-size:1.5rem; }  /* shrink header title on mobile */
+        .product-card h2 { font-size:1rem; } /* shrink product titles */
       }
     </style>
   </head>
+
   <body>
     <header>
       <h1>🎀 Chá de Bebê da Emily! 🎀</h1>
