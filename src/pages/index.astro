@@ -60,7 +60,7 @@ function priceColor(price) {
         margin-bottom:0.5rem;
         color:#4d1a4d;
         text-shadow:2px 2px 4px rgba(0,0,0,0.3);
-        white-space: nowrap;        /* Keep on one line */
+        white-space: nowrap;  /* Keep on one line */
         overflow: hidden;
         text-overflow: ellipsis;
       }
@@ -71,9 +71,9 @@ function priceColor(price) {
         color:#4d1a4d;
         text-shadow:1.5px 1.5px 3px rgba(0,0,0,0.25);
         text-align:center;
-        white-space: nowrap;      /* Keep on one line */
-        overflow: hidden;         /* Hide overflow */
-        text-overflow: ellipsis;  /* Add … if too long */
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
       }
 
       p { color:#555; font-size:1rem; }
@@ -186,16 +186,16 @@ function priceColor(price) {
       }
 
       @media (max-width:480px) {
-        .product-grid { grid-template-columns:1fr; } 
-        .product-card img { width:120px; height:120px; } 
+        .product-grid { grid-template-columns:1fr; }
+        .product-card img { width:120px; height:120px; }
         .product-card { padding: 1rem; margin-bottom:1rem; }
-        h1 { font-size:1.5rem; }  /* shrink header title on mobile */
-        .product-card h2 { font-size:1rem; } /* shrink product titles */
+        h1 { font-size:1.5rem; }
+        .product-card h2 { font-size:1rem; }
       }
     </style>
   </head>
 
-  <body>
+  <body data-pix-code={pixCode}>
     <header>
       <h1>🎀 Chá de Bebê da Emily! 🎀</h1>
       <p>Escolha um presente divertido e contribua para a alegria da família! 💖</p>
@@ -227,6 +227,7 @@ function priceColor(price) {
     </footer>
 
     <script>
+      const pixCode = document.body.dataset.pixCode;
       document.querySelectorAll('.copy-btn').forEach(btn => {
         btn.addEventListener('click', () => {
           navigator.clipboard.writeText(pixCode).then(() => {
@@ -234,6 +235,8 @@ function priceColor(price) {
             toast.textContent = `✅ Código PIX copiado para ${btn.closest('.product-card').querySelector('h2').textContent}!`;
             toast.classList.add('show');
             setTimeout(() => toast.classList.remove('show'), 2000);
+          }).catch(() => {
+            alert("Erro ao copiar o código PIX. Copie manualmente: " + pixCode);
           });
         });
       });
